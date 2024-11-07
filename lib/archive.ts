@@ -1,12 +1,22 @@
-import fs from 'fs';
-import { getImageUrlByFileId } from '../bot';
-import { Bot } from 'grammy';
+import fs from "fs";
+import { Bot } from "grammy";
+
+const bot = new Bot(process.env.NEXT_PUBLIC_BOT_TOKEN || "");
+let botHasBeenStarted = false;
+start();
+
+function start() {
+  if (!botHasBeenStarted) {
+    bot.start();
+  }
+  botHasBeenStarted = true;
+}
 
 const errorMessages = {
-  archivePath: 'Error: Archive path is undefined or empty.',
-  readArchive: 'Error reading archive file: ',
-  parseArchive: 'Error parsing archive file: ',
-  writeArchive: 'Error writing to archive file:',
+  archivePath: "Error: Archive path is undefined or empty.",
+  readArchive: "Error reading archive file: ",
+  parseArchive: "Error parsing archive file: ",
+  writeArchive: "Error writing to archive file:",
 };
 
 export type ArchiveItem = {
@@ -21,16 +31,26 @@ export type DisplayArchiveItem = ArchiveItem & {
   imageUrl: string;
 };
 
-export const getDisplayArchive = async (bot: Bot): Promise<DisplayArchiveItem[]> => {
+export async function getImageUrlByFileId(fileId: string): Promise<string> {
+  try {
+    const file = await bot.api.getFile(fileId);
+    return `https://api.telegram.org/file/bot${process.env.NEXT_PUBLIC_BOT_TOKEN}/${file.file_path}`;
+  } catch (error) {
+    console.error(`Failed to get file with ID ${fileId}:`, error);
+    throw new Error("Unable to retrieve file URL");
+  }
+}
+
+export const getDisplayArchive = async (): Promise<DisplayArchiveItem[]> => {
   const archive = await readFromArchive();
   const displayArchive = await Promise.all(
     archive.map(async (item) => {
-      const imageUrl = await getImageUrlByFileId(bot, item.preview_file_id);
+      const imageUrl = await getImageUrlByFileId(item.preview_file_id);
       return { ...item, imageUrl };
     })
   );
   return displayArchive;
-}
+};
 
 const readFromArchive = async (
   archivePath: string | undefined = process.env.NEXT_PUBLIC_ARCHIVE_PATH
@@ -40,7 +60,7 @@ const readFromArchive = async (
       return reject(errorMessages.archivePath);
     }
 
-    fs.readFile(archivePath, 'utf8', (readError, data) => {
+    fs.readFile(archivePath, "utf8", (readError, data) => {
       if (readError) {
         return reject(errorMessages.readArchive + readError);
       }
@@ -71,7 +91,7 @@ const writeToArchive = async (
       fs.writeFile(
         archivePath,
         JSON.stringify(archive, null, 2),
-        'utf8',
+        "utf8",
         (writeError) => {
           if (writeError) {
             return reject(writeError);
@@ -87,12 +107,12 @@ const writeToArchive = async (
 
 export const updateArchive = async (
   item: ArchiveItem,
-  operation: 'PUSH' | 'DELETE'
+  operation: "PUSH" | "DELETE"
 ) => {
   const archive = await readFromArchive();
-  if (operation === 'PUSH') {
+  if (operation === "PUSH") {
     await writeToArchive(item, archive);
-  } else if (operation === 'DELETE') {
+  } else if (operation === "DELETE") {
     const updatedArchive = archive.filter(
       (archiveItem) => archiveItem.file_id !== item.file_id
     );
