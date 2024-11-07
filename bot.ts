@@ -135,7 +135,6 @@ export const randomSuccessMessage = () => {
 
 const bot = new Bot(process.env.NEXT_PUBLIC_BOT_TOKEN || "");
 bot.start();
-console.log("BOT INSTANCE", bot);
 bot.on("message", async (ctx) => {
   if (ctx.message) {
     try {
@@ -144,7 +143,6 @@ bot.on("message", async (ctx) => {
       ctx.reply(randomSuccessMessage());
     } catch (error) {
       console.error("Unexpected error:", error);
-      // Send a user-friendly error message
       ctx.reply("Oops! Something went wrong while saving the image. Please try again later.");
     }
   }
