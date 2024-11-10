@@ -11,10 +11,8 @@ The web app has been designed with a minimalist approach, ensuring a clean and u
 ### Desktop & Mobile Experience
 
 ![Desktop view](https://github.com/Erpix3lt/telegram-image-archive/blob/main/.screens/1.jpg)
-*Image showcasing the desktop view of the archive.*
 
 ![Desktop view details](https://github.com/Erpix3lt/telegram-image-archive/blob/main/.screens/2.jpg)
-*Image showcasing the details on hover.*
 
 ---
 
