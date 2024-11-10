@@ -4,6 +4,16 @@ A **web-based image archive** that uses **Telegram** as storage! This repository
 
 ---
 
+## ⚙️ Usage
+
+1. Run the telegram bot inside the projects root: 
+```bash 
+npx tsc bot.ts
+node bot.js
+```
+2. Deploy the image archive to vercel or any other service.
+3. Happy archiving!
+
 ## 🌟 Minimal Styling
 
 The web app has been designed with a minimalist approach, ensuring a clean and user-friendly experience on both **desktop** and **mobile** devices.
