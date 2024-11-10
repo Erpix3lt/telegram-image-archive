@@ -20,7 +20,7 @@ const Gallery: React.FC<GalleryProps> = ({ displayArchive }) => {
     <div className="w-full">
       <div className="flex flex-row justify-between items-center m-4">
         <div className="border p-1">
-          <h2 className="text-xl font-semibold">personal archive.</h2>
+          <h2 className="text-xl font-semibold">telegram archive.</h2>
         </div>
         <Filter
           keywords={keywords}

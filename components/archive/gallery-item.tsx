@@ -33,7 +33,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ displayArchiveItem }) => {
         <h4 className="text-sm font-semibold mb-2">
           {displayArchiveItem.artist}
         </h4>
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2 flex-wrap">
           {displayArchiveItem.keywords.map((keyword) => (
             <Badge key={keyword} variant={'secondary'}>
               {keyword}
