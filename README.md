@@ -14,6 +14,10 @@ node bot.js
 2. Deploy the image archive to vercel or any other service.
 3. Happy archiving!
 
+## 🤖 ZSH
+
+For ease of execution I wrote a ZSH function allowing to run the bot simply writing `runArchive` in your ZSH console. In order to do so, move your archive into the documents folder on mac, or simply costumise the path.
+
 ## 🌟 Minimal Styling
 
 The web app has been designed with a minimalist approach, ensuring a clean and user-friendly experience on both **desktop** and **mobile** devices.
