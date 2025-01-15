@@ -18,7 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { DisplayArchiveItem } from '@/lib/archive';
+import { DisplayArchiveItem } from '@/lib/utils';
 
 export type FilterProps = {
   keywords: string[];

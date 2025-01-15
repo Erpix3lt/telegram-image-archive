@@ -1,16 +1,4 @@
 import fs from "fs";
-import { Bot } from "grammy";
-
-const bot = new Bot(process.env.NEXT_PUBLIC_BOT_TOKEN || "");
-let botHasBeenStarted = false;
-start();
-
-function start() {
-  if (!botHasBeenStarted) {
-    bot.start();
-  }
-  botHasBeenStarted = true;
-}
 
 const errorMessages = {
   archivePath: "Error: Archive path is undefined or empty.",
@@ -32,13 +20,7 @@ export type DisplayArchiveItem = ArchiveItem & {
 };
 
 export async function getImageUrlByFileId(fileId: string): Promise<string> {
-  try {
-    const file = await bot.api.getFile(fileId);
-    return `https://api.telegram.org/file/bot${process.env.NEXT_PUBLIC_BOT_TOKEN}/${file.file_path}`;
-  } catch (error) {
-    console.error(`Failed to get file with ID ${fileId}:`, error);
-    throw new Error("Unable to retrieve file URL");
-  }
+  return `/api/telegram-image?fileId=${fileId}`;
 }
 
 export const getDisplayArchive = async (): Promise<DisplayArchiveItem[]> => {

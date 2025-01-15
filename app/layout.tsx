@@ -32,7 +32,7 @@ export default function RootLayout({
           <hr></hr>
           <div className="flex flex-row gap-x-4 items-center m-4">
             <a className="text-sm text-white" href="">
-              telegram archive.
+            telegram archive.
             </a>
             <p className="text-sm text-gray-100">
               I do not claim any copyright to the displayed pictures.

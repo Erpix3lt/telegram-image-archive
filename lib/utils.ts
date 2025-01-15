@@ -9,3 +9,16 @@ export const formatDate = (date: string) => {
   const dateObj = new Date(date);
   return dateObj.toLocaleDateString();
 }
+
+
+export type ArchiveItem = {
+  file_id: string;
+  preview_file_id: string;
+  artist: string;
+  date: string;
+  keywords: string[];
+};
+
+export type DisplayArchiveItem = ArchiveItem & {
+  imageUrl: string;
+};
