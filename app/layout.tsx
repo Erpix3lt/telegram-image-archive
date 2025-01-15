@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'private archive.',
+  title: 'image archive.',
 };
 
 export default function RootLayout({
