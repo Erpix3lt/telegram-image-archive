@@ -147,4 +147,3 @@ bot.on("message", async (ctx) => {
     }
   }
 });
-

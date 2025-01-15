@@ -1,6 +1,5 @@
+import Gallery from "@/components/archive/gallery";
 import { getDisplayArchive } from "@/lib/archive";
-import Gallery from "../components/archive/gallery";
-
 
 export default async function Home() {
 
@@ -8,7 +7,7 @@ export default async function Home() {
 
   return (
     <div>
-      <Gallery displayArchive={displayArchive ?? [""]}></Gallery>
+      <Gallery displayArchive={displayArchive}></Gallery>
     </div>
   );
 }

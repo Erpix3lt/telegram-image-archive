@@ -1,4 +1,5 @@
-import { DisplayArchiveItem } from '@/lib/archive';
+/* eslint-disable @next/next/no-img-element */
+import { DisplayArchiveItem } from '@/lib/utils';
 import React from 'react';
 import {
   HoverCard,
@@ -22,7 +23,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ displayArchiveItem }) => {
       <HoverCardTrigger asChild>
         <button onClick={handleButtonClick}>
           <img
-            className='w-full sm:w-96'
+            className='w-full'
             alt={displayArchiveItem.artist}
             src={displayArchiveItem.imageUrl}
             loading="lazy"
@@ -45,9 +46,9 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ displayArchiveItem }) => {
             <p className="text-muted-foreground">
               {formatDate(displayArchiveItem.date)}
             </p>
-            <a className="underline" href={displayArchiveItem.imageUrl}>
+            {/* <a className="underline" href={displayArchiveItem.imageUrl}>
               Download here
-            </a>
+            </a> */}
           </span>
         </div>
       </HoverCardContent>
